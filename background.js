@@ -1,16 +1,57 @@
+var headerConfigs = {};
+
+// 初始化 headerConfig
+$.get("http://vote.weibo.com", {}, function (res) {
+	headerConfigs = {
+		"vote.weibo.com": {
+			"Referer": "http://vote.weibo.com",
+			"Origin": "http://vote.weibo.com"
+		}
+	};
+});
+
+
+function match_config(url) {
+	for (var key in headerConfigs) {
+		if (url.indexOf(key) >= 0) {
+			return headerConfigs[key];
+		}
+	}
+	return null
+}
+
+
 chrome.webRequest.onBeforeSendHeaders.addListener(
-    function(details) {
-        for (var i = 0; i < details.requestHeaders.length; ++i) {
-            if (details.requestHeaders[i].name === 'User-Agent') {
-                details.requestHeaders.splice(i, 1);
-                break;
-            }
-        }
-        return { requestHeaders: details.requestHeaders };
-    },
-    {urls: ['<all_urls>']},
-    [ 'blocking', 'requestHeaders']
+	function (details) {
+		if (details.type === 'xmlhttprequest') {
+			console.log(details);
+			var config = match_config(details.url);
+			console.log(config);
+			var exist_headers = {};
+			for (var i = 0; i < details.requestHeaders.length; ++i) {
+				var header = details.requestHeaders[i];
+				if (config && header.name in config) {
+					header.value = config[header.name];
+					exist_headers[header.name] = 1;
+				}
+			}
+			if (config) {
+				for (var key in config) {
+					if (key in exist_headers) {
+
+					}
+					else {
+						details.requestHeaders.push({name: key, value: config[key]});
+					}
+				}
+			}
+
+			console.log(details.requestHeaders);
+
+			return {requestHeaders: details.requestHeaders};
+		}
+
+	},
+	{urls: ['<all_urls>']},
+	['blocking', 'requestHeaders']
 );
-
-
-// alert(1)

@@ -11,7 +11,9 @@
     "activeTab",
     "storage",
     "webRequest",
-    "*://*.weibo.com/"
+    "webRequestBlocking",
+    "*://*.weibo.com/",
+    "http://www.geekpark.net/ajax/"
   ],
   "background": {
     "page": "background.html",

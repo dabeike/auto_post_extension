@@ -1,0 +1,51 @@
+{
+    "title": "微博投票",
+    "button": "投票 * 3",
+    "description": {
+        "content": "贴吧自动签到",
+        "extra": [
+            {
+                "type": "checkbox",
+                "order":"-",
+                "group": [
+                    {
+                        "title": "分享",
+                        "href": null
+                    },
+                    {
+                        "title": "匿名",
+                        "href": null
+                    }
+                ]
+            },
+            {
+                "type": "checkbox",
+                "order":"|",
+                "group": [
+                    {
+                        "title": "最佳男歌手1",
+                        "href": null
+                    },
+                    {
+                        "title": "最佳男歌手2",
+                        "href": "http://baidu.com"
+                    }
+                ]
+            },
+            {
+                "type": "radio",
+                "order":"-",
+                "group": [
+                    {
+                        "title": "最佳男歌手",
+                        "href": null
+                    },
+                    {
+                        "title": "最佳女歌手",
+                        "href": "http://baidu.com"
+                    }
+                ]
+            }
+        ]
+    }
+}
