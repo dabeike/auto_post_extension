@@ -1,0 +1,69 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body{
+            width:300px;
+            min-height:200px;
+        }
+        .head{
+            padding: 6px 0;
+
+        }
+        .description{
+            padding-left:15px;
+            padding-bottom: 5px;
+            border-bottom: 1px dotted lightgrey;
+        }
+        .single_button{
+            border-radius:5px;
+            background-color: darkseagreen;
+            border: 0;
+            padding: 0 6px;
+            cursor: pointer;
+        }
+    </style>
+    <script src="popup.js"></script>
+</head>
+<body>
+
+<div class="head">
+    <b>微博投票</b>：
+    <button class="single_button">投票 * 3</button>
+</div>
+<div class="description">
+    <input type="checkbox" id="post_weibo" checked>分享 |
+    <input type="checkbox" id="anoymouse">匿名 </br>
+    <input type="checkbox" id="" name="" checked> <a href="#">最受欢迎男歌手</a><br/>
+    <input type="checkbox" id="" name="" checked> <a href="#">最受欢迎男歌手</a><br/>
+    <input type="checkbox" id="" name="" checked> <a href="#">最受欢迎男歌手</a><br/>
+</div>
+
+<div class="head">
+    <b>百度百科</b>：
+    <button class="single_button">送花 * 3</button>
+</div>
+<div class="description">
+    每天自动送花 * 3
+</div>
+
+<div class="head">
+    <b>百度贴吧</b>：
+    <button class="single_button">自动签到</button>
+</div>
+<div class="description">
+    贴吧自动签到
+</div>
+
+<div class="head">
+    <b>脑洞大开投票</b>：
+    <button class="single_button" id="test">随机投20票</button>
+</div>
+<div class="description">
+    脑洞大开的几个大老师的视频，随机投票。每天未登录可投20+票，登陆后再次点击按钮可再投20票。
+</div>
+
+</body>
+</html>
