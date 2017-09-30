@@ -53,11 +53,7 @@
                     }
 
                 }, 'json');
-                this.$message({
-                    message: '恭喜你，这是一条成功消息',
-                    type: 'success',
-                    showClose: true,
-                });
+
             },
             post_all(payloads) {
                 this.payload_list = payloads;
@@ -65,7 +61,7 @@
                     let payload = payloads[i];
                     $.ajax({
                         type: payload.method.toUpperCase(),
-                        url: '/api/dzw/get_payload',
+                        url: payload.url,
                         data: payload.data,
                         success: this.successRes(payload),
                         error: this.errorRes(payload),
@@ -106,15 +102,18 @@
                     }
                 }
                 if (finish) {
+                    this.button_loading = false;
                     $.post(host + '/api/dzw/deal_response', {
                         key: this.options.key,
                         payloads: JSON.stringify(this.payload_list)
                     }, (res) => {
-                        if (res.code === 200) {
-                        }
-                        else {
-
-                        }
+                        this.$notify({
+                            message: res.msg,
+                            type: res.code,
+                            showClose: true,
+                            duration: 2500,
+                            customClass: "notify_box"
+                        });
 
                     }, 'json');
                 }
@@ -163,4 +162,6 @@
         padding-bottom: 5px;
         border-bottom: 1px dotted lightgrey;
     }
+
+
 </style>

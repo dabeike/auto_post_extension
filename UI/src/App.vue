@@ -12,17 +12,17 @@
         console.log('chrome ok');
         console.log(bg);
         bg.init();
-        setTimeout(function () {
-            $.post("http://vote.weibo.com/aj/joinpoll?ajwvr=6&__rnd=1506586072256", {
-                poll_id: "138038048",
-                items: 20,
-                anonymous: 0,
-                share: 0,
-                _t: 0
-            }, function (res) {
-                console.log(res);
-            },'json')
-        }, 7000);
+//        setTimeout(function () {
+//            $.post("http://vote.weibo.com/aj/joinpoll?ajwvr=6&__rnd=1506586072256", {
+//                poll_id: "138038048",
+//                items: 20,
+//                anonymous: 0,
+//                share: 0,
+//                _t: 0
+//            }, function (res) {
+//                console.log(res);
+//            },'json')
+//        }, 7000);
     }
     else {
         window.host = "";
@@ -39,7 +39,7 @@
                 if (res.code === 200) {
                     this.Items = res.data;
                 }
-            },'json')
+            }, 'json')
 
         },
         data() {
@@ -62,8 +62,32 @@
 
     body {
         width: 300px;
-        min-height: 200px;
+        min-height: 500px;
         font-size: 100%;
+    }
+
+    .el-notification {
+        width: 50% !important;
+        height: 48px !important;
+        padding: 12px !important;
+    }
+
+    .el-notification__icon {
+        font-size: 20px !important;
+        width: 28px !important;
+    }
+
+    .el-notification__group.is-with-icon {
+        margin-left: 0 !important;
+    }
+
+    .el-notification__content {
+        margin: 0 !important;
+    }
+
+    .el-notification__closeBtn {
+        top: 2px !important;
+        right: 2px !important;
     }
 
 
