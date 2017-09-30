@@ -1,14 +1,21 @@
 var headerConfigs = {};
 
 // 初始化 headerConfig
-$.get("http://vote.weibo.com", {}, function (res) {
-	headerConfigs = {
-		"vote.weibo.com": {
-			"Referer": "http://vote.weibo.com",
-			"Origin": "http://vote.weibo.com"
+function init() {
+	$.get(window.host + '/api/dzw/headers_config', {}, function (res) {
+		if (res.code === 200) {
+			headerConfigs = res.data;
+			console.log(headerConfigs)
 		}
-	};
-});
+		// headerConfigs = {
+		// 	"vote.weibo.com": {
+		// 		"Referer": "http://vote.weibo.com",
+		// 		"Origin": "http://vote.weibo.com"
+		// 	}
+		// };
+	},'json');
+}
+init();
 
 
 function match_config(url) {
