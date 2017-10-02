@@ -90,5 +90,16 @@
         right: 2px !important;
     }
 
+    .el-card__body {
+        padding: 10px !important;
+    }
+
+    .el-card__header {
+        padding: 8px 20px !important;
+    }
+
+    .el-button--mini {
+        padding: 4px 15px !important;
+    }
 
 </style>

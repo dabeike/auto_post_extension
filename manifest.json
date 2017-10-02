@@ -12,8 +12,7 @@
     "storage",
     "webRequest",
     "webRequestBlocking",
-    "*://*.weibo.com/",
-    "http://127.0.0.1:8000/"
+    "*://*/"
   ],
   "background": {
     "page": "background.html",
