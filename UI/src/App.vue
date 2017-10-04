@@ -1,6 +1,15 @@
 <template>
     <div id="app">
-        <PostItem v-for="item in Items" :options="item"/>
+        <div>
+            <el-card class="call_all_box">
+                <el-button v-if="!autoCall" type="success" round size="mini" @click="call_all">一键打 Call</el-button>
+                <el-switch :style="autoCall?'':'float:right'"
+                           :on-text="autoCall?'启动时自动打 call':'手动打'"
+                           v-model="autoCall">
+                </el-switch>
+            </el-card>
+            <PostItem ref="posts" v-for="item in Items" :options="item"/>
+        </div>
     </div>
 </template>
 
@@ -9,22 +18,11 @@
 
     if (chrome && chrome.extension) {
         var bg = chrome.extension.getBackgroundPage();
-        console.log('chrome ok');
-        console.log(bg);
+        console.log('chrome mode');
         bg.init();
-//        setTimeout(function () {
-//            $.post("http://vote.weibo.com/aj/joinpoll?ajwvr=6&__rnd=1506586072256", {
-//                poll_id: "138038048",
-//                items: 20,
-//                anonymous: 0,
-//                share: 0,
-//                _t: 0
-//            }, function (res) {
-//                console.log(res);
-//            },'json')
-//        }, 7000);
     }
     else {
+        console.log("dev mode")
         window.host = "";
     }
 
@@ -38,15 +36,39 @@
             $.get(window.host + '/api/dzw/main_page', {}, (res) => {
                 if (res.code === 200) {
                     this.Items = res.data;
+                    if (this.autoCall) {
+                        setTimeout(this.call_all, 1000);
+                    }
                 }
             }, 'json')
 
+
         },
         data() {
+
             return {
-                Items: {}
+                Items: {},
+                autoCall: localStorage.autoCall == 1 ? true : false
+            }
+        },
+        methods: {
+            call_all() {
+//                console.log(this.$children)
+                console.log(this.$refs)
+                let posts = this.$refs.posts;
+                for (let post of posts) {
+                    console.log(post)
+                    post.click_button();
+                }
+            }
+        },
+        watch: {
+            autoCall(val) {
+                localStorage.autoCall = val ? 1 : 0;
+                console.log(localStorage.autoCall)
             }
         }
+
     }
 </script>
 
@@ -57,13 +79,17 @@
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
         color: #2c3e50;
-        margin-top: 10px;
     }
 
     body {
         width: 300px;
         min-height: 500px;
         font-size: 100%;
+    }
+
+    html, body {
+        max-height: 600px;
+        overflow: scroll;
     }
 
     .el-notification {
@@ -102,4 +128,9 @@
         padding: 4px 15px !important;
     }
 
+    .call_all_box {
+        text-align: left;
+        margin-bottom: 8px;
+        min-height: 45px;
+    }
 </style>

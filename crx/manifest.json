@@ -1,8 +1,13 @@
 {
   "manifest_version": 2,
-  "name": "Getting started example",
-  "description": "This extension allows the user to change the background color of the current page.",
+  "name": "大蜜打 call",
+  "description": "一个给大张伟打 call 的插件",
   "version": "1.0",
+  "icons":{
+    "16": "dzw2.png",
+    "48": "dzw2.png",
+    "128": "dzw2.png"
+  },
   "browser_action": {
     "default_icon": "dzw2.png",
     "default_popup": "popup.html"
