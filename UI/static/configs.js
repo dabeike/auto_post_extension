@@ -1,1 +1,4 @@
-window.host="http://127.0.0.1:8000";
+if (!localStorage.host) {
+    localStorage.host = "http://dm48-chrome.zhusun.in";
+}
+window.host = localStorage.host;
